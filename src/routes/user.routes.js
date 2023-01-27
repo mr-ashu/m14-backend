@@ -15,6 +15,32 @@ app.post("/adduser", async (req, res) => {
     res.send({ new_score })
 })
 
+app.patch("/adduser", async (req, res) => {
+    const {id} = req.params
+    let { score} = req.body
+ 
+
+    try {
+
+     
+      
+            await ScoreModel.findByIdAndUpdate({ _id: id }, { companyName, position, contract, location })
+
+            res.send({
+                message: ' update Successfully',
+                status: "ok"
+            })
+      
+    } catch (error) {
+       
+        res.send({
+            message: 'Something went wrong please try again',
+            status: false
+        })
+
+    }
+})
+
 
 app.get("/", async (req, res) => {
     const data = await ScoreModel.find().limit(10)

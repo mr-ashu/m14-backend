@@ -7,7 +7,7 @@ const ScoreModel = require("../schema/user.schema");
 
 app.post("/adduser", async (req, res) => {
 
-    const new_score = new ScoreModel({
+    const new_score = await  ScoreModel.create({
         ...req.body
     })
     await new_score.save()
